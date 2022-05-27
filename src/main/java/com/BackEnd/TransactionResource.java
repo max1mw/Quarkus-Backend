@@ -1,4 +1,4 @@
-package com.example;
+package com.BackEnd;
 
 
 import javax.transaction.Transactional;
@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 
-@Path("/tasktest2")
+@Path("/tasktest1/test2")
 
 public class TransactionResource {
 
@@ -28,6 +28,9 @@ public class TransactionResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Transaction transaction){
+        if(transaction.book.bookId==0){
+            Book.persist(transaction.book);
+        }
         Transaction.persist(transaction);
         if(transaction.isPersistent()){
             return Response.created(URI.create("/transactions"+ transaction.id)).build();
@@ -53,6 +56,7 @@ public class TransactionResource {
         transaction.borrowdate=transaction1.borrowdate;
         transaction.returndate=transaction1.returndate;
         transaction.isreturned= transaction1.isreturned;
+        transaction.book=transaction1.book;
         return Response.ok(transaction).build();
 
     }

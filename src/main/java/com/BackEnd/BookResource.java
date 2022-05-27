@@ -1,4 +1,4 @@
-package com.example;
+package com.BackEnd;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
@@ -8,7 +8,7 @@ import java.net.URI;
 import java.util.List;
 
 
-@Path("/tasktest1")
+@Path("/tasktest1/test1")
 
 public class BookResource {
 
@@ -136,7 +136,7 @@ return Response.ok(books).build();
    @GET
     @Path("id/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(@PathParam("id") Long id){
+    public Response getById(@PathParam("id") int id){
        //Book book = Book.findById(id);
         return  Book.findByIdOptional(id)
                 .map(Book -> Response.ok(Book).build())

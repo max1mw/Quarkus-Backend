@@ -1,4 +1,4 @@
-package com.example;
+package com.BackEnd;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.*;
@@ -16,6 +16,8 @@ public class Transaction extends PanacheEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     public Book book;
+
+
 
 
 
